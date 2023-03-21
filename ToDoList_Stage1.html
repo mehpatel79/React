@@ -18,18 +18,24 @@
         
         <script>
             let ar = [];
-            function addtxt(){
+            addtxt = () => {
                 let str = "";
                 let artxt = document.getElementById("txt").value;
-                ar.push(artxt);
+                if(artxt==""){
+                    alert("Please enter Task todo")
+                }
+                else {
+                    ar.push(artxt);
                 for (let i=0; i<ar.length; i++){
                     str += `<li>${ar[i]}&nbsp;&nbsp;<input type="checkbox"></li>`;
                 }
                 document.getElementById("display").innerHTML = str;
                 document.getElementById("txt").value = "";   
-            }
+            
+                }
+                }
 
-            function rsttxt(){
+             rsttxt = () => {
                 const list = document.getElementById("display");
                 while (list.hasChildNodes()){
                     list.removeChild(list.children[0]);
