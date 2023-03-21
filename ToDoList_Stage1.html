@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title> Java Script Exercise - 2 : Q-7 </title>
+        <style>
+            button {padding: 3px 30px; margin: 3px; font-size: 15px;}
+        </style>
+    </head>
+    <body>
+        <input type="text" id="txt" placeholder="Enter Task To Do">
+        <button onclick="addtxt()" id="addbtn">Add</button>
+        <button onclick="rsttxt()" id="rstbtn">Reset</button>
+        <hr>
+        <ul id="display"></ul>
+        
+        <script>
+            let ar = [];
+            function addtxt(){
+                let str = "";
+                let artxt = document.getElementById("txt").value;
+                ar.push(artxt);
+                for (let i=0; i<ar.length; i++){
+                    str += `<li>${ar[i]}&nbsp;&nbsp;<input type="checkbox"></li>`;
+                }
+                document.getElementById("display").innerHTML = str;
+                document.getElementById("txt").value = "";   
+            }
+
+            function rsttxt(){
+                const list = document.getElementById("display");
+                while (list.hasChildNodes()){
+                    list.removeChild(list.children[0]);
+                }
+                ar = [];
+            }     
+        </script>
+    </body>
+</html>
