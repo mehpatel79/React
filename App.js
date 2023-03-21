@@ -6,6 +6,7 @@ import './App.css';
 const list1 = ["Mehul","Parth","Jay","Ajay","Raj"]
 const list2 = ["Ruchi", "Sneha", "Anjali", "Vibhuti", "Jyot"]
 const list3 = ["Sharan", "Vasava", "Parul","ABC","XYZ"]
+var num = 1;
 
 class App extends React.Component {
   constructor(props) {
@@ -16,13 +17,21 @@ class App extends React.Component {
      //this.candidateName = this.candidateName.bind(this);
   }
 
-changeList2 = () => {
- this.setState({candidateName : list2})
-}
 
-changeList3 = () => {
-  this.setState({candidateName : list3})
- }
+changeList = () => {
+  if(num==1) {
+    return (num = 2, this.setState({candidateName : list2}));
+  }
+  else if (num==2) {
+      return (num = 3, this.setState({candidateName : list3}));    
+    }
+  else if (num==3){
+      return (num = 1, this.setState({candidateName : list1}));  
+    }
+  }
+
+
+
   render() {
     return (
       <div>
@@ -31,8 +40,7 @@ changeList3 = () => {
             return <li key={candidate}> {candidate}</li>
           })}
         </ol>
-        <button onClick={this.changeList2}>Change List</button>
-        <button onClick={this.changeList3}>Other List</button>
+        <button onClick={this.changeList}>Change List</button>
       </div>
     );
   }
