@@ -1,7 +1,7 @@
 import React from 'react';
-//import ReactDOM from 'react-dom/client';
+import ReactDOM from 'react-dom/client';
 import './App.css';
-//const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById('root'));
 
 const list1 = ["Mehul","Parth","Jay","Ajay","Raj"]
 const list2 = ["Ruchi", "Sneha", "Anjali", "Vibhuti", "Jyot"]
