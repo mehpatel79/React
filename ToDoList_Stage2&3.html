@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title> Java Script Exercise - 2 : Q-7 </title>
+        <style>
+            button {padding: 3px 30px; margin: 3px; font-size: 15px;}
+            .strikethrough{text-decoration: line-through;opacity: 0.5;}
+            .bt1, .bt2 {padding: 2px; margin:2px;}
+            .li2 {text-decoration: none; list-style: none;}
+
+        </style>
+    </head>
+    <body>
+        <input type="text" id="txtin" placeholder="Enter Task To Do">
+        <input type="hidden" id="txtindex">
+        <button onclick="addtxt()" id="addbtn">Add</button>
+        <button onclick="rsttxt()" id="rstbtn">Reset</button>
+        <button onclick="updtxt()" id="updbtn" style="display:none;">Update</button>
+        <hr>
+        <ul id="display"></ul>
+        <hr>
+        <ul id="display2"></ul>
+
+        <script>
+            let ar = [];
+            let ar1 = [];
+            addtxt = () => {
+                let str = "";
+                let artxt = document.getElementById("txtin").value;
+                if(artxt==""){
+                    alert("Please enter Task todo")
+                }
+                else {
+                    ar.push(artxt);
+                    display();
+                    document.getElementById("txtin").value = "";   
+                }
+            }
+
+            display = () => {
+                let str1 = '';
+                ar.forEach(function (value, index) {
+                str1 += `<li><input type="checkbox" onclick="chst(this, ${index})" class="chx"><span> ${value}<span></li>`;
+            });
+            document.getElementById('display').innerHTML = str1;
+
+            }
+
+            rsttxt = () => {
+                const list = document.getElementById("display");
+                const list2 = document.getElementById("display2");
+                while (list.hasChildNodes()){
+                    list.removeChild(list.children[0]);
+                }
+                while (list2.hasChildNodes()){
+                    list2.removeChild(list2.children[0]);
+                }
+                ar = [];
+                ar1 = [];
+            }     
+
+            
+           
+
+
+            chst = (ele, index) => {
+                if(ele.checked){
+                        let ar1txt = ar[index];
+                        ele.nextElementSibling.classList.add("strikethrough")
+                        display2(ar1txt);
+                        //let q = document.querySelector(".chx");
+                        //q.disabled = true;
+                    }
+                else{
+                        ele.nextElementSibling.classList.remove("strikethrough");
+                }
+
+
+            }
+
+            
+            display2 = (ele2) => {
+                ar1.push(ele2);
+                display3();
+            }
+
+
+            display3 = () => {
+                let str2 = "";
+                ar1.forEach(function (value, index) {
+                str2 += `<li class="li2"><button class="bt1" onclick="delval(${index})">X</button>&nbsp;${value}&nbsp;<button class="bt2" onclick="updval(${index})">Update</button></li>`;
+            });
+            document.getElementById('display2').innerHTML = str2;
+            }
+
+            function delval(index){
+                ar1.splice(index,1);
+                ar.splice(index,1);
+                display();
+                display3();
+            }
+
+            function updval(index){
+                document.getElementById("txtin").value = ar1[index];
+                document.getElementById("txtindex").value = index;
+                document.getElementById("updbtn").style.display = "inline";    
+                document.getElementById("addbtn").style.display = "none"
+                document.getElementById("rstbtn").style.display = "none"
+            }
+
+            function updtxt(){
+                let updatetxt = document.getElementById("txtin").value;
+                let index = document.getElementById("txtindex").value;
+                ar1[index] = updatetxt;
+                ar[index] = updatetxt;
+                document.getElementById("txtin").value = "";
+                document.getElementById("txtindex").value = "";
+                document.getElementById("updbtn").style.display = "none";    
+                document.getElementById("addbtn").style.display = "inline"
+                document.getElementById("rstbtn").style.display = "inline"
+                display();
+                display3();
+                
+            }
+
+            
+
+               
+            
+        </script>
+    </body>
+</html>
